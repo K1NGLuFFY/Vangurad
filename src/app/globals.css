@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
+@theme {
+  --color-concrete: #F0EFEB;
+  --color-charcoal: #1A1A1A;
+  --color-safety: #FF5C00;
+
+  --font-display: var(--font-display), sans-serif;
+  --font-body: var(--font-body), sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #F0EFEB;
+  --foreground: #1A1A1A;
+  --border-width: 3px;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Base style resets and headings using Bricolage Grotesque font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+
+/* Structural motifs */
+.concrete-border {
+  border: var(--border-width) solid var(--color-charcoal);
+}
+
+.concrete-border-b {
+  border-bottom: var(--border-width) solid var(--color-charcoal);
+}
+
+.concrete-border-t {
+  border-top: var(--border-width) solid var(--color-charcoal);
+}
+
+.concrete-border-l {
+  border-left: var(--border-width) solid var(--color-charcoal);
+}
+
+.concrete-border-r {
+  border-right: var(--border-width) solid var(--color-charcoal);
+}
+
+/* Structural sign background */
+.signage-orange {
+  background-color: var(--color-safety);
+  color: var(--color-charcoal);
+  border: var(--border-width) solid var(--color-charcoal);
+}
+
+.signage-charcoal {
+  background-color: var(--color-charcoal);
+  color: var(--color-concrete);
+  border: var(--border-width) solid var(--color-concrete);
+}
+
+/* Image styles: Grayscale consistently with contrast control, absolutely no dark overlays on top */
+.concrete-image-container {
+  position: relative;
+  border: var(--border-width) solid var(--color-charcoal);
+  background-color: #d8d7d2;
+  overflow: hidden;
+}
+
+.concrete-image {
+  filter: grayscale(100%) contrast(125%);
+  transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.concrete-image-container:hover .concrete-image {
+  filter: grayscale(0%) contrast(100%);
+  transform: scale(1.02);
+}
+
+/* Custom scrollbars matching Concrete & Steel system */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-concrete);
+  border-left: var(--border-width) solid var(--color-charcoal);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-safety);
+}
+
+/* Lenis Custom Smooth Scroll Style */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+.lenis-target {
+  position: relative;
+}
+
+/* Custom utilities */
+.border-3 {
+  border-width: 3px;
+}
+.border-4 {
+  border-width: 4px;
+}
+.border-t-3 {
+  border-top-width: 3px;
+}
+.border-b-3 {
+  border-bottom-width: 3px;
+}
+.border-t-4 {
+  border-top-width: 4px;
+}
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+.border-l-3 {
+  border-left-width: 3px;
+}
+.border-r-3 {
+  border-right-width: 3px;
 }
